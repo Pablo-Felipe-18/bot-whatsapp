@@ -225,7 +225,7 @@ client.on('message', async msg => {
 
     if (estadoAtual === 'submenu_pagamentos') {
         if (msg.body === '1') {
-            await client.sendMessage(msg.from, `O pagamento será realizado no dia 5 deste mês.
+            await client.sendMessage(msg.from, `Informações sobre pagamento apenas com atendente.
 
 Digite 0 para voltar ao menu principal.`);
             estados[msg.from] = 'aguardando_voltar';
@@ -235,7 +235,7 @@ Digite 0 para voltar ao menu principal.`);
 Digite 0 para voltar ao menu principal.`);
             estados[msg.from] = 'aguardando_voltar';
         } else if (msg.body === '3') {
-            await client.sendMessage(msg.from, `O vale alimentação é creditado no início de cada mês.
+            await client.sendMessage(msg.from, `Informações sobre vale alimentação é consultada pelas atendentes.
 
 Digite 0 para voltar ao menu principal.`);
             estados[msg.from] = 'aguardando_voltar';
