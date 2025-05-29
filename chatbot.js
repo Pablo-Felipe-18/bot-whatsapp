@@ -76,7 +76,7 @@ function registrarNaPlanilha(protocolo, nome, numero, mensagem, origem = 'Client
     xlsx.writeFile(wb, planilhaPath);
 }
 
-const qrcode = require('qrcode-terminal');
+const qrcode = require('qrcode');
 const { Client, Buttons, List, MessageMedia } = require('whatsapp-web.js');
 const client = new Client({
     puppeteer: {
@@ -87,8 +87,16 @@ const client = new Client({
 
 
 client.on('qr', qr => {
-    qrcode.generate(qr, { small: true });
+    qrcode.toDataURL(qr, (err, url) => {
+        if (err) {
+            console.error('Erro ao gerar QR:', err);
+        } else {
+            console.log('Abra este link para escanear o QR Code:');
+            console.log(url);
+        }
+    });
 });
+
 
 client.on('ready', () => {
     console.log('Tudo certo! WhatsApp conectado.');
